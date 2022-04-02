@@ -60,7 +60,15 @@ resource "docker_container" "nextcloud" {
     "MYSQL_DATABASE=${local.nextcloud_db_name}",
     "NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.betanski.dev",
     "NEXTCLOUD_ADMIN_USER=kbetanski",
-    "NEXTCLOUD_ADMIN_PASSWORD=${random_password.nextcloud_admin_password.result}"
+    "NEXTCLOUD_ADMIN_PASSWORD=${random_password.nextcloud_admin_password.result}",
+    "SMTP_HOST=${var.smtp_host}",
+    "SMTP_PORT=465",
+    "SMTP_SECURE=ssl",
+    "SMTP_AUTHTYPE=LOGIN",
+    "SMTP_NAME=${var.smtp_name}",
+    "SMTP_PASSWORD=${var.smtp_password}",
+    "MAIL_FROM_ADDRESS=nextcloud",
+    "MAIL_DOMAIN=${var.smtp_domain}"
   ]
 
   depends_on = [
