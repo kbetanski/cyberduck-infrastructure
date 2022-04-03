@@ -63,4 +63,10 @@ resource "docker_container" "caddy" {
     read_only      = false
     host_path      = "/home/ubuntu/web/Caddyfile"
   }
+
+  lifecycle {
+    ignore_changes = [
+      image
+    ]
+  }
 }

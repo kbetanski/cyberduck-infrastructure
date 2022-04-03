@@ -1,9 +1,9 @@
-output "admin_password" {
+output "nextcloud_db_root_password" {
   sensitive = true
-  value     = random_password.nextcloud_admin_password.result
+  value     = module.nextcloud.db_root_password
 }
 
-output "db_root_password" {
+output "nextcloud_admin_password" {
   sensitive = true
-  value     = random_password.nextcloud_db_root_password.result
+  value     = module.nextcloud.admin_password
 }

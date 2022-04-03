@@ -1,3 +1,7 @@
+variable "proxy_network" {
+  type = string
+}
+
 variable "smtp_host" {
   type = string
 }
