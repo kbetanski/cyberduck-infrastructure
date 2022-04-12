@@ -14,7 +14,7 @@ resource "null_resource" "caddy" {
 
   provisioner "file" {
     source      = "${path.module}/Caddyfile"
-    destination = "/home/ubuntu/Caddyfile"
+    destination = "/mnt/ssd/Caddyfile"
 
     connection {
       type        = "ssh"
@@ -55,13 +55,13 @@ resource "docker_container" "caddy" {
   volumes {
     container_path = "/public"
     read_only      = false
-    host_path      = "/home/ubuntu/web/public"
+    host_path      = "/mnt/ssd/web/public"
   }
 
   volumes {
     container_path = "/etc/caddy/Caddyfile"
     read_only      = false
-    host_path      = "/home/ubuntu/web/Caddyfile"
+    host_path      = "/mnt/ssd/Caddyfile"
   }
 
   lifecycle {
