@@ -23,10 +23,6 @@ resource "docker_volume" "nextcloud" {
   name = "nextcloud"
 }
 
-resource "docker_volume" "nextcloud_mariadb" {
-  name = "nextcloud_mariadb"
-}
-
 resource "docker_container" "nextcloud_fpm" {
   name    = "nextcloud-fpm"
   image   = "nextcloud:22.2.6-fpm"
@@ -44,13 +40,7 @@ resource "docker_container" "nextcloud_fpm" {
   volumes {
     container_path = "/var/www/html"
     read_only      = false
-    volume_name    = docker_volume.nextcloud.name
-  }
-
-  volumes {
-    container_path = "/var/nextcloud"
-    read_only      = false
-    host_path      = "/mnt/ssd/nextcloud/storage"
+    host_path      = var.nextcloud_volume_host_path
   }
 
   env = [
@@ -68,13 +58,6 @@ resource "docker_container" "nextcloud_fpm" {
     "SMTP_PASSWORD=${var.smtp_password}",
     "MAIL_FROM_ADDRESS=nextcloud",
     "MAIL_DOMAIN=${var.smtp_domain}",
-    "OBJECTSTORE_S3_SSL=true",
-    "OBJECTSTORE_S3_HOST=${var.s3_host}",
-    "OBJECTSTORE_S3_BUCKET=${var.s3_bucket}",
-    "OBJECTSTORE_S3_KEY=${var.s3_key_id}",
-    "OBJECTSTORE_S3_SECRET=${var.s3_secret}",
-    "OBJECTSTORE_S3_REGION=${var.s3_region}",
-    "OBJECTSTORE_S3_USEPATH_STYLE=true",
     "NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.betanski.dev",
     "REDIS_HOST=host.docker.internal",
   ]
@@ -94,7 +77,7 @@ resource "null_resource" "nextcloud" {
 
   provisioner "file" {
     source      = "${path.module}/nextcloud.conf"
-    destination = "/home/ubuntu/nextcloud.conf"
+    destination = "/mnt/ssd/nextcloud/nextcloud.conf"
 
     connection {
       type        = "ssh"
@@ -127,7 +110,7 @@ resource "docker_container" "nextcloud_nginx" {
   volumes {
     container_path = "/etc/nginx/conf.d/default.conf"
     read_only      = true
-    host_path      = "/home/ubuntu/nextcloud.conf"
+    host_path      = "/mnt/ssd/nextcloud/nextcloud.conf"
   }
 
   depends_on = [

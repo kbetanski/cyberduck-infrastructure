@@ -1,3 +1,8 @@
+variable "nextcloud_volume_host_path" {
+  default = "/mnt/ssd/nextcloud/html"
+  type    = string
+}
+
 variable "proxy_network" {
   type = string
 }
@@ -15,25 +20,5 @@ variable "smtp_password" {
 }
 
 variable "smtp_domain" {
-  type = string
-}
-
-variable "s3_key_id" {
-  type = string
-}
-
-variable "s3_secret" {
-  type = string
-}
-
-variable "s3_bucket" {
-  type = string
-}
-
-variable "s3_host" {
-  type = string
-}
-
-variable "s3_region" {
   type = string
 }

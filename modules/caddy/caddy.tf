@@ -54,13 +54,13 @@ resource "docker_container" "caddy" {
 
   volumes {
     container_path = "/public"
-    read_only      = false
+    read_only      = true
     host_path      = "/mnt/ssd/web/public"
   }
 
   volumes {
     container_path = "/etc/caddy/Caddyfile"
-    read_only      = false
+    read_only      = true
     host_path      = "/mnt/ssd/Caddyfile"
   }
 
