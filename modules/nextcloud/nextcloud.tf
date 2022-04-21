@@ -25,7 +25,7 @@ resource "docker_volume" "nextcloud" {
 
 resource "docker_container" "nextcloud_fpm" {
   name    = "nextcloud-fpm"
-  image   = "nextcloud:22.2.6-fpm"
+  image   = "nextcloud:23.0.3-fpm"
   restart = "always"
 
   networks_advanced {

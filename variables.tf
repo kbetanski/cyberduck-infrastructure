@@ -13,23 +13,3 @@ variable "smtp_password" {
 variable "smtp_domain" {
   type = string
 }
-
-variable "s3_key_id" {
-  type = string
-}
-
-variable "s3_secret" {
-  type = string
-}
-
-variable "s3_bucket" {
-  type = string
-}
-
-variable "s3_host" {
-  type = string
-}
-
-variable "s3_region" {
-  type = string
-}
