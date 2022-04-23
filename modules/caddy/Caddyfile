@@ -30,6 +30,10 @@ betanski.dev {
 	file_server
 }
 
+www.betanski.dev {
+	redir https://betanski.dev{uri}
+}
+
 nextcloud.betanski.dev {
     rewrite /.well-known/carddav /remote.php/dav
     rewrite /.well-known/caldav /remote.php/dav
