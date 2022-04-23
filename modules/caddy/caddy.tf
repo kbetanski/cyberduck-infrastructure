@@ -46,6 +46,11 @@ resource "docker_container" "caddy" {
     external = 443
   }
 
+  ports {
+    internal = 2019
+    external = 2019
+  }
+
   volumes {
     container_path = "/data"
     read_only      = false
