@@ -11,6 +11,7 @@ betanski.dev {
 	}
 
 	redir /post/gitlab-ci/cd-and-monorepo/ /post/gitlab-ci-cd-and-monorepo/ permanent
+	redir /post/using-sdd-with-raspberry-pi-4b/ /post/using-ssd-with-raspberry-pi-4b/ permanent
 
 	@static {
 		file
