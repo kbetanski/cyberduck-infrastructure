@@ -45,3 +45,7 @@ nextcloud.betanski.dev {
 
 	reverse_proxy http://nextcloud:80
 }
+
+pihole.betanski.dev {
+	reverse_proxy http://pihole:80
+}

@@ -7,3 +7,8 @@ output "nextcloud_admin_password" {
   sensitive = true
   value     = module.nextcloud.admin_password
 }
+
+output "pihole_password" {
+  sensitive = true
+  value     = module.pihole.pihole_password
+}

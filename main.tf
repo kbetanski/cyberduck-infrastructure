@@ -40,3 +40,9 @@ module "nextcloud" {
     module.caddy
   ]
 }
+
+module "pihole" {
+  source = "./modules/pihole"
+
+  proxy_network = module.caddy.caddy_network
+}
