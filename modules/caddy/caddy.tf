@@ -29,7 +29,7 @@ resource "null_resource" "caddy" {
 
 resource "docker_container" "caddy" {
   name    = "caddy"
-  image   = "caddy:2-alpine"
+  image   = "caddy:2.5.2-alpine"
   restart = "always"
 
   networks_advanced {

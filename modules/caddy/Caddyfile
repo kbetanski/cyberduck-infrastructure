@@ -47,5 +47,8 @@ nextcloud.betanski.dev {
 }
 
 pihole.betanski.dev {
+	@denied not remote_ip private_ranges
+	abort @denied
+
 	reverse_proxy http://pihole:80
 }
